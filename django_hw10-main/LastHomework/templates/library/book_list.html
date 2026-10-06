@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>Список книг</title></head>
+<body>
+    <h2>Каталог книг</h2>
+    
+    <div>
+        <a href="?mode=all"><strong>Усі книги</strong></a> | 
+        <a href="?mode=available"><strong>Книги у наявності</strong></a>
+    </div>
+    <hr>
+
+    <table border="1">
+        <tr>
+            <th>Назва</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Статус</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.style }}</td>
+            <td>
+                {% if book.is_available %}
+                    <span style="color: green;">В наявності</span>
+                {% else %}
+                    <span style="color: red;">На руках у читача</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">Книг не знайдено.</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

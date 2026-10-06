@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список читачів</title>
+</head>
+<body>
+    <h2>Зареєстровані читачі бібліотеки</h2>
+    <hr>
+    
+    <table border="1" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Прізвище та Ім'я</th>
+                <th>Контактний телефон</th>
+                <th>Email</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reader in readers %}
+            <tr>
+                <td>{{ reader.last_name }} {{ reader.first_name }}</td>
+                <td>{{ reader.phone }}</td>
+                <td>{{ reader.email }}</td>
+                <td>
+                    <a href="{% url 'reader_detail' reader.pk %}">Переглянути книги</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">Читачів поки що немає в базі даних.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <br>
+    <a href="{% url 'book_list' %}">Перейти до каталогу книг</a>
+</body>
+</html>
